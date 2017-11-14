@@ -1,5 +1,10 @@
 ## Deeplearing book 
 
+## Chapter 5
+
+  * Maximum Likelihood Estimation
+    - 
+
 ## Chapter 6
   * Rectified Linear Activation Function
     - This function is the default activation function recommended for use with most feedforward neural networks. 
@@ -16,3 +21,5 @@
     - Deriving the cost function from maximum likelihood is that is removes the burden of designing cost functions for each model.
       Specifying a model p(y|x) automatically determines a cost function LOGp(y|x).
 
+ ## LaTex
+ $$x_{1,2} = {-b\pm\sqrt{b^2 - 4ac} \over 2a}.$$
