@@ -1,9 +1,15 @@
+1. [github_markdown](https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf)
+2. [quicklatex](http://quicklatex.com)
+
 ## Deeplearing book 
 
 ## Chapter 5
 
-  * Maximum Likelihood Estimation
-    - 
+### 5.5 Maximum likelihood Estimation
+Consider a set of m examples ![](http://quicklatex.com/cache3/7a/ql_161a3a24559ccbcaebb8627e7ec9ad7a_l3.png)
+ 
+
+
 
 ## Chapter 6
   * Rectified Linear Activation Function
@@ -21,5 +27,3 @@
     - Deriving the cost function from maximum likelihood is that is removes the burden of designing cost functions for each model.
       Specifying a model p(y|x) automatically determines a cost function LOGp(y|x).
 
- ## LaTex
- $$x_{1,2} = {-b\pm\sqrt{b^2 - 4ac} \over 2a}.$$
