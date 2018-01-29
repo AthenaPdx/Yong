@@ -51,7 +51,6 @@ def draw_fraction_pie(count):
    while True:
       plt.cla()
       plt.clf()
-      print draw_fraction_pie.event
       if draw_fraction_pie.event%2 == 0:
          d1, n1 = fraction_number()
          d2, n2 = fraction_number()
@@ -99,7 +98,7 @@ draw_fraction_pie.event=0
 
 new_draw = False
 def onclick(event):
-   print "onclick"
+   print ("onclick")
    draw_fraction_pie(2)
 
 
@@ -115,12 +114,12 @@ draw_fraction_pie(2)
 
 while False:
   if new_draw:
-    print "new draw: %d" % new_draw
+    print ("new draw: %d" % new_draw)
     fig = plt.figure()
     cid = fig.canvas.mpl_connect('key_press_event', onclick)
     new_draw = False 
     draw_fraction_pie(2)
-    print "after drawing"
+    print ("after drawing")
   else:
-    print "new draw: %d" % new_draw
+    print ("new draw: %d" % new_draw)
 
