@@ -1,3 +1,6 @@
+#1 
+#2 git add
+
 import matplotlib.mathtext as mathtext
 import numpy as np
 import random
