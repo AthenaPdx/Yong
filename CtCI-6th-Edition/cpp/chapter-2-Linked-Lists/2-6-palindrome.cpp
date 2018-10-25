@@ -197,6 +197,56 @@ bool isPalindromeRecur( Node * head ) {
   return isPalindromeRecurHelper(head, head);
 }
 
+Node* reverseRecurHelper(Node *& left, Node* right ) {
+  if ( right->next == nullptr ) {
+    std::cout << "return right: " << right->data << std::endl;
+    return right;
+  }
+  Node* new_left = reverseRecurHelper(left, right->next);
+  right->next = nullptr;
+  Node* old_left = left;
+  left = new_left;
+  left->next = old_left;
+  std::cout << "new_left: " << std::endl;
+  printList(left);
+  return right;
+}
+
+Node* reverseRecur(Node* head){
+   Node* right = head;
+   reverseRecurHelper(head, right);
+   printList(head);
+   return head;
+}
+
+void reverse1(Node** headRef){
+   Node* head =  (*headRef)->next;
+   (*headRef)->next = nullptr;
+   while (head){
+      Node* new_head = head;
+      head = head->next;
+      new_head->next = *headRef;
+      *headRef = new_head;
+   }
+}
+
+Node* reverseRecurHelper2(Node** headRef, Node* head){
+   if (head->next == nullptr){
+      *headRef = head;
+      return head;
+   }
+   Node* tail = reverseRecurHelper2(headRef, head->next);
+   tail->next = head;
+   head->next = nullptr;
+   return head;
+}
+
+void reverseRecur2(Node** headRef){
+   if (*headRef == nullptr) return;
+   reverseRecurHelper2(headRef, *headRef);
+}
+
+
 
 int main()
 {
@@ -236,20 +286,31 @@ int main()
   printList(head2);
 
   Node * head = nullptr;
+  insert( head, 'f' );
   insert( head, 'a' );
   insert( head, 'b' );
   insert( head, 'c' );
   insert( head, 'b' );
   insert( head, 'd' );
+  insert( head, 'f' );
   std::cout << "List 3: ";
   printList(head);
 
-  if ( isPalindromeRecur(head) ) {
+  if (isPalindromeRecur(head)) {
     std::cout << "List 3 is pallindrome list\n";
   } else {
     std::cout << "List 3 is not a pallindrome list\n";
   }
   std::cout << "List 3: ";
   printList(head);
+
+  reverse1(&(head->next));
+  std::cout << "List 3 reverse1 from second item\n";
+  printList(head);
+
+  reverseRecur2(&(head->next));
+  std::cout << "List 3 reverseRecur2 from second item\n";
+  printList(head);
+
   return 0;
 }
