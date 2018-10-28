@@ -46,6 +46,32 @@ bool detectAndRemoveCycle( Node * head )
 }
 
 
+  
+Node* detectCycleOnly( Node * head )
+{
+  if ( head == nullptr) {
+    return nullptr;
+  }
+  Node * fastPtr = head;
+  Node * slowPtr = head;
+  while( slowPtr && fastPtr && fastPtr->next)
+  {
+    fastPtr = fastPtr->next->next;
+    slowPtr = slowPtr->next;
+    if ( fastPtr == slowPtr ) {
+      //removeLoop( slowPtr, head );
+      Node* newHead = head;
+      while (true){
+         if (newHead == slowPtr) return newHead;
+         newHead = newHead->next;
+         slowPtr = slowPtr->next;
+      }
+    }
+  }
+  return nullptr;
+}
+
+
 
 void insert( Node * & head, int data )
 {
@@ -81,11 +107,12 @@ int main()
     insert( head , 5 );
     std::cout << "Current List:\n";
     printList( head );
-    std::cout << "Inserting loop, connecting 5 to 2 \n";
-    head->next->next->next->next->next = head->next;
+    std::cout << "Inserting loop, connecting 5 to 3 \n";
+    head->next->next->next->next->next = head->next->next;
     std::cout << "Detecting and deleting loop\n";
-    detectAndRemoveCycle(head);
-    std::cout << "Back to the same old list\n";
-    printList( head );
+    std::cout << "loop starts at: " << (detectCycleOnly(head))->data << std::endl;
+    //detectAndRemoveCycle(head);
+    //std::cout << "Back to the same old list\n";
+    //printList( head );
     return 0;
 }
