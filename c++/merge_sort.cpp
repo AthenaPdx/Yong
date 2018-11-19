@@ -73,10 +73,65 @@ void mergeSort(vector<int>& nums, int start, int end){
    merge(nums,start, end, mid);
 }
 
-void buildHeap(vector<int> nums){
+
+class heap{
+
+public: 
+ int top() {return nums[0];}
+ size_t size() {return nums.size();}
+
+ void display(){
+   cout << "****" << endl; 
+   for (int i=0; i<nums.size(); i++) cout << nums[i] << " " ;
+   cout << endl <<  "****" << endl; 
+ }
+
+ void push(int num){
+   nums.push_back(num);
    int idx = nums.size()-1;
-   if (nums[idx] < 
-}
+   while (idx){
+      int parent = (idx-1)/2;
+      if (nums[idx]<nums[parent]){
+         swap(nums[idx], nums[parent]);
+         idx = parent;
+      }else{
+         break;
+      }
+   }
+ }
+
+ void pop(){
+
+   nums[0]=nums[nums.size()-1];
+   nums.pop_back();
+   //cout << "poped size: " << nums.size() << endl;
+   //display();
+   int head = 0;
+   while (head < nums.size()-1){
+      int left = head*2+1 < nums.size() ? head*2+1 :0 ;
+      int right = head*2+2 < nums.size() ? head*2+2 :0 ;
+      if (left && right){
+        if (nums[left]<nums[head] && nums[left]<=nums[right]){
+           swap(nums[left],nums[head]);
+           head = left;
+        }else if (nums[right]<=nums[head] && nums[right]<=nums[left]){
+           swap(nums[right],nums[head]);
+           head = right;
+        }else{
+           return;
+        }
+      }else{ //alredy reach to leaf. only left. since left + 1 = right
+        if (left && nums[left]<nums[head]){
+           swap(nums[left],nums[head]);
+        }
+        return;
+      }
+   }
+ }
+
+private: 
+ vector<int> nums;
+};
 
 int main(){
 
@@ -95,5 +150,22 @@ int main(){
    quickSort(nums2);
    print(nums);
    print(nums2);
+
+   vector<int> nums3 = {24, 1, 8, 6, 7, 3, 23, 4, 2, 2, 1, 9, 7};
+   //vector<int> nums3 = {24, 1, 8, 6};
+   print(nums3);
+   heap H;
+   for (auto i: nums3){
+      H.push(i);
+      //H.display();
+   }
+   cout << endl;
+   while(H.size()){
+      //H.display();
+      cout << H.top() << " " ;
+      H.pop();
+   }
+   cout << endl;
+
 
 }
