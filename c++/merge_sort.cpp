@@ -3,31 +3,34 @@
 
 using namespace std;
 
-
-void quickSort(vector<int>& nums){
-   _quickSortHelper(nums,0,nums.size()-1;
-}
-
 int partitian(vector<int>& nums, int start, int end){
+   cout << "partion call   : " << start << " " << end << " " <<  endl;
    int val = nums[end];
-   int paviot = end;
    int left = start;
    int right = end-1;
-   while (left <= right){
+   while (left < right){
       while (nums[left] < val) left++;
-      while (nums[right] > val) right--;
-      if (left < right && nums[left] > val){
+      while (nums[right] >= val) right--;
+      if (left < right && nums[left] >= val){
          swap(nums[left], nums[right]);
          left++; right--;
       }
-      return 
    }
+   swap(nums[left],nums[end]);
+   cout << "partion return: " << start << " " << end << " " << left<< endl;
+   return left;
 }
 
 void _quickSortHelper(vector<int>& nums, int start, int end){
    if (start >= end) return;
-   int paviot = 
+   cout << "quickSort: " << start << " " << end << endl;
+   int paviot = partitian(nums, start, end);
+   _quickSortHelper(nums, start, paviot-1);
+   _quickSortHelper(nums, paviot+1, end);
+}
 
+void quickSort(vector<int>& nums){
+   _quickSortHelper(nums,0,nums.size()-1);
 }
 
 void merge(vector<int>& nums, int start, int end, int mid) {
@@ -64,10 +67,15 @@ void mergeSort(vector<int>& nums, int start, int end){
    if (start >=end) return;
    //int mid = (start + end)/2; 
    //use start + (end-start-1)/2 to avoid overflow
-   mid = start + (end-1)/2
+   int mid = start + (end-start)/2;
    mergeSort(nums, start, mid);
    mergeSort(nums, mid+1, end);
    merge(nums,start, end, mid);
+}
+
+void buildHeap(vector<int> nums){
+   int idx = nums.size()-1;
+   if (nums[idx] < 
 }
 
 int main(){
@@ -82,5 +90,10 @@ int main(){
    print(nums);
    mergeSort(nums,0, nums.size()-1);
    print(nums);
+   vector<int> nums2 = {1, 8, 6, 7, 3, 23, 4, 2, 2, 1, 9, 7};
+   print(nums2);
+   quickSort(nums2);
+   print(nums);
+   print(nums2);
 
 }
