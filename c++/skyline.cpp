@@ -2,15 +2,17 @@
 #include <iostream>
 #include <queue>
 
+// do not use sort for O(n)  time complex
+
 using namespace std;
 
 vector<pair<int, int>> skyLine(vector<vector<int>>& buildings){
+
    priority_queue<pair<int,int>> PQ;
    vector<pair<int,int>> ret;
 
-   // adding building
    for (auto B : buildings){
-      cout << "adding element" << endl;
+
       // cleanup pre- exiting buildings
       while (PQ.size() && B[0] > PQ.top().second){
          auto t = PQ.top();
